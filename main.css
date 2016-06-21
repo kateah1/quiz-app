@@ -1,0 +1,105 @@
+body {
+	background: url("images/quiz-app-national-park-cover.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: sans-serif;
+}
+h1 {
+	font-size: 5em;
+	font-weight: 300;
+	text-align: center;
+}
+#quiz {
+	font-weight: normal;
+	color: rgba(30,69,29,.7);
+}
+#start-page {
+	outline: 1px solid black;
+	text-align: center;
+}
+#start-page h2 {
+	font-weight: 300;
+	font-size: 2em;
+}
+button {
+	margin-top: 30px;
+	border-radius: 10px;
+	padding: 10px;
+	border: 3px solid black;
+	font-size: 1.5em;
+	background-color: rgba(30,69,29,.7);
+}
+button:hover {
+	background-color: rgba(30,69,29,.3);
+	cursor: pointer;
+}
+
+
+
+
+#questions-page {
+	outline: 1px solid black;
+	text-align: center;
+	width: 500px;
+	display: inline-block;
+	margin-left: 32%;
+	background-color: rgba(0,0,0,.3);
+}
+#questions-page article {
+
+}
+#questions-page h3 {
+	width: 140px;
+}
+#questions-page h2 {
+	font-weight: 300;
+	font-size: 3em;
+}
+#questions-page form {
+	
+}
+#questions-page input {
+	display: block;
+	margin: 30px;
+}
+
+
+
+#question-tracker {
+	float: right;
+	display: inline-block;
+	border: 3px solid black;
+	border-radius: 10px;
+	margin-right: 100px;
+}
+#question-tracker ul {
+	list-style: none;
+	padding-left: 0;
+}
+#question-tracker li {
+	margin: 30px;
+
+}
+.fa, .fa-star, .fa-lg {
+	color: rgb(52,138,95);
+}
+
+
+
+
+
+#end-page {
+	outline: 1px solid black;
+	text-align: center;
+	clear: both;
+}
+#end-page h1 {
+
+}
+#end-page h2 {
+
+}
+#try-again {
+
+}
+

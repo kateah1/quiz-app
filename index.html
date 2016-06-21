@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Quiz App</title>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+
+	<h1>National Parks <span id="quiz">Quiz</span></h1>
+	
+	<div id="start-page">
+			<h2>How much do you know about the U.S. National Park Service?</h2>
+			<button id="begin">LET'S FIND OUT</button>
+	</div>
+
+
+	<div id="questions-page">
+		<article>
+			<h3>Question 1</h3>
+			<h2>Type Question Here</h2>
+			<form>
+				<input type="radio" name="options" value="A">	
+				<input type="radio" name="options" value="B">
+				<input type="radio" name="options" value="C">
+				<input type="radio" name="options" value="D">
+			</form>
+		</article>
+		<button id="submit">SUBMIT</button>
+	</div>	
+		
+
+	<div id="question-tracker">
+		<ul>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+			<li>
+				<i class="fa fa-star fa-lg" aria-hidden="true"></i>
+			</li>
+		</ul>
+	</div>
+
+	<div id="end-page">
+		<h1>You've finished the quiz!</h1>
+		<h2>You got 5 out of 8 questions correct</h2>
+		<button id="try-again">TRY AGAIN</button>
+	</div>
+
+	<script src="https://code.jquery.com/jquery.min.js"></script>	
+	<script type="text/javascript" src="app.js"></script>	
+</body>
+</html>
