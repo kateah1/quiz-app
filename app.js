@@ -4,17 +4,17 @@
 $(document).ready(pageLoad);
 
 function pageLoad() {
-
+	$("#start-page").show();
 	$("#questions-page").hide();
 	$("#question-tracker").hide();
 	$("#end-page").hide();
-
 }
 
+// global variables
 var currQuestion = 0;
 var numCorrect = 0;
 
-// hide start page and show questions page when click button
+// hide start page and show questions page when click start button
 $("#begin").click(start);
 
 function start() {
@@ -22,6 +22,7 @@ function start() {
 	$("#questions-page").show();
 	$("#question-tracker").show();
 	generateQuestion();
+	trackLeaf();
 }
 
 // questions and choices
@@ -82,35 +83,59 @@ function generateQuestion() {
 // when click submit
 $("#submit").click(function () {
 	evaluateAnswer();
-	generateQuestion();
 	nextQuestion();
+	generateQuestion();
+	trackLeaf();
 })
 
 // if correct answer, add to number correct, change current question icon to green
-// else, change current question icon to red
+// else, display alert and change current question icon to red
 function evaluateAnswer() {
 	var selection = $("#questions-page form input").val();
-	if (selection == questions[currQuestion].answer) {
+	if(currQuestion != 8) {
+		if (selection == questions[currQuestion].answer) {
 		alert("You got it right!");
 		numCorrect++;
+		var icon = questions[currQuestion].questionNum;
+		$(".fa-leaf:nth-child(" + icon + ")").css("color", "green");
 		nextQuestion();
+		}
+		else {
+		alert("That is incorrect! The right answer is " + questions[currQuestion].answer);
+		var icon = questions[currQuestion].questionNum;
+		$(".fa-leaf:nth-child(" + icon + ")").css("color", "red");
+		}
 	}
 	else {
-		alert("That is incorrect! The right answer is " + questions[currQuestion].answer);
-	}
+		finish ();
+	}	
 }
 
+// clear for next question
 function nextQuestion() {
 	$("#questions-page form").empty();
 	$("#questions-page h3").empty();
 	$("#questions-page h2").empty();
 	currQuestion++;
-	generateQuestion();
 }
 
+// track icons showing current question
+function trackLeaf() {
+	var icon = questions[currQuestion].questionNum;
+	$(".fa-leaf:nth-child(" + icon + ")").css("color", "black");
+}
 
+function finish() {
+	$("#questions-page").hide();
+	$("#question-tracker").hide();
+	$("#end-page").show();
+	$("#end-page h2").text("You got " + numCorrect + " out of 8 questions correct");
+}
 
-
+// try again
+$("#try-again").click(function () {
+	pageLoad();
+})
 
 
 
