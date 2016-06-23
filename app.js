@@ -21,75 +21,92 @@ function start() {
 	$("#start-page").hide();
 	$("#questions-page").show();
 	$("#question-tracker").show();
+	generateQuestion();
 }
 
 // questions and choices
-var question = [
+var questions = [
 
 	{title: "What is the nation's first national park?",
 	options: ["Grand Teton National Park", "Yellowstone National Park", "Zion National Park", "Death Valley National Park"],
-	questionNum: 0,
-	answer: 1},
+	questionNum: 1,
+	answer: "Yellowstone National Park"},
 	
 	{title: "Which of the following states does not have a national park?",
 	options: ["Arkansas", "New Mexico", "West Virginia", "South Carolina"],
-	questionNum: 1,
-	answer: 2},
+	questionNum: 2,
+	answer: "West Virginia"},
 
 	{title: "How many recreational visits were there to America's National Parks in 2015?",
 	options: ["58 million", "103 million", "247 million", "307 million"],
-	questionNum: 2,
-	answer: 3},
+	questionNum: 3,
+	answer: "307 million"},
 
 	{title: "About how many species of threatened or endangered plants and animals are in the U.S. National Parks?",
 	options: ["150", "200", "250", "300"],
-	questionNum: 3,
-	answer: 2},
+	questionNum: 4,
+	answer: "250"},
 
 	{title: "Which national park contains the highest point in North America?",
 	options: ["Denali National Park", "Glacier National Park", "Olympic National Park", "Yosemite National Park"],
-	questionNum: 4,
-	answer: 0},
+	questionNum: 5,
+	answer: "Denali National Park"},
 
 	{title: "Mammoth Cave National Park in Kentucky has about how many miles of mapped caves?",
 	options: ["200", "300", "400", "500"],
-	questionNum: 5,
-	answer: 2},
+	questionNum: 6,
+	answer: "400"},
 
 	{title: "What was the most visited national park in 2015?",
 	options: ["Great Smoky Mountains National Park", "Yellowstone National Park", "Acadia National Park", "Yosemite National Park"],
-	questionNum: 6,
-	answer: 0},
+	questionNum: 7,
+	answer: "Great Smoky Mountains National Park"},
 
 	{title: "How many national parks are there in the United States?",
 	options: ["52", "55", "58", "62"],
-	questionNum: 7,
-	answer: 2}
+	questionNum: 8,
+	answer: "58"}
 
 ]	
+
+// generate current question number, question title, and add radio buttons for question options
+function generateQuestion() {
+	$("#questions-page h3").text("Question " + questions[currQuestion].questionNum);
+	$("#questions-page h2").text(questions[currQuestion].title);
+	for(var i = 0; i < questions[currQuestion].options.length; i++) {
+		var optionInput = questions[currQuestion].options[i];
+		$("#questions-page form").append("<input type='radio' value=\"" + optionInput + "\">");
+	}
+}
 
 // when click submit
 $("#submit").click(function () {
 	evaluateAnswer();
-
+	generateQuestion();
+	nextQuestion();
 })
 
 // if correct answer, add to number correct, change current question icon to green
 // else, change current question icon to red
 function evaluateAnswer() {
-	var selection = $("input[type='radio']:checked").val();
-	if (selection == question[currQuestion].answer) {
+	var selection = $("#questions-page form input").val();
+	if (selection == questions[currQuestion].answer) {
+		alert("You got it right!");
 		numCorrect++;
-		$(".fa-tree").css("color" : "green");
+		nextQuestion();
 	}
 	else {
-		$(".fa-tree").css("color" : "red");
+		alert("That is incorrect! The right answer is " + questions[currQuestion].answer);
 	}
 }
 
-
-
-
+function nextQuestion() {
+	$("#questions-page form").empty();
+	$("#questions-page h3").empty();
+	$("#questions-page h2").empty();
+	currQuestion++;
+	generateQuestion();
+}
 
 
 

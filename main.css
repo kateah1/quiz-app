@@ -59,9 +59,7 @@ button:hover {
 	color: #fff;
 }
 #questions-page input {
-	display: block;
-	margin: 30px;
-	margin-right: 0px;
+	float: left;
 }
 
 
