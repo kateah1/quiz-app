@@ -76,7 +76,8 @@ function generateQuestion() {
 	$("#questions-page h2").text(questions[currQuestion].title);
 	for(var i = 0; i < questions[currQuestion].options.length; i++) {
 		var optionInput = questions[currQuestion].options[i];
-		$("#questions-page form").append("<input type='radio' value=\"" + optionInput + "\">");
+		var inputRadio = "<input type='radio' value=" + questions[currQuestion].options[i] + ">";
+		$("#questions-page form").append("<label>" + inputRadio + " " + optionInput + "</label>");
 	}
 }
 
@@ -91,7 +92,7 @@ $("#submit").click(function () {
 // if correct answer, add to number correct, change current question icon to green
 // else, display alert and change current question icon to red
 function evaluateAnswer() {
-	var selection = $("#questions-page form input").val();
+	var selection = $("#questions-page form input:checked");
 	if(currQuestion != 8) {
 		if (selection == questions[currQuestion].answer) {
 		alert("You got it right!");
