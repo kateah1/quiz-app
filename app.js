@@ -76,54 +76,54 @@ function generateQuestion() {
 	$("#questions-page h2").text(questions[currQuestion].title);
 	for(var i = 0; i < questions[currQuestion].options.length; i++) {
 		var optionInput = questions[currQuestion].options[i];
-		var inputRadio = "<input type='radio' value=" + questions[currQuestion].options[i] + ">";
-		$("#questions-page form").append("<label>" + inputRadio + " " + optionInput + "</label>");
+		var inputRadio = "<input type='radio' value='" + optionInput + "'>";
+		$('#questions-page form').append('<label>' + inputRadio + " " + optionInput + "</label>");
 	}
 }
 
 // when click submit
 $("#submit").click(function () {
 	evaluateAnswer();
-	nextQuestion();
-	generateQuestion();
-	trackLeaf();
 })
 
 // if correct answer, add to number correct, change current question icon to green
 // else, display alert and change current question icon to red
 function evaluateAnswer() {
-	var selection = $("#questions-page form input:checked");
-	if(currQuestion != 8) {
-		if (selection == questions[currQuestion].answer) {
-		alert("You got it right!");
-		numCorrect++;
-		var icon = questions[currQuestion].questionNum;
-		$(".fa-leaf:nth-child(" + icon + ")").css("color", "green");
-		nextQuestion();
-		}
-		else {
-		alert("That is incorrect! The right answer is " + questions[currQuestion].answer);
-		var icon = questions[currQuestion].questionNum;
-		$(".fa-leaf:nth-child(" + icon + ")").css("color", "red");
-		}
+	var selection = $("#questions-page form input:checked").val();
+	if (selection == questions[currQuestion].answer) {
+	alert("You got it right!");
+	numCorrect++;
+	var icon = questions[currQuestion].questionNum;
+	trackLeaf("green");
+	nextQuestion();
 	}
 	else {
-		finish ();
-	}	
+	alert("That is incorrect! The right answer is " + questions[currQuestion].answer);
+	var icon = questions[currQuestion].questionNum;
+	trackLeaf("red");
+	nextQuestion();
+	}
 }
 
 // clear for next question
 function nextQuestion() {
+	currQuestion++;
 	$("#questions-page form").empty();
 	$("#questions-page h3").empty();
 	$("#questions-page h2").empty();
-	currQuestion++;
+	if(currQuestion != 8) {
+		generateQuestion();
+		trackLeaf("black");
+	}
+	else {
+		finish();
+	}
 }
 
 // track icons showing current question
-function trackLeaf() {
+function trackLeaf(color) {
 	var icon = questions[currQuestion].questionNum;
-	$(".fa-leaf:nth-child(" + icon + ")").css("color", "black");
+	$(".fa-leaf:nth-child(" + icon + ")").css("color", color);
 }
 
 function finish() {
@@ -135,6 +135,8 @@ function finish() {
 
 // try again
 $("#try-again").click(function () {
+	currQuestion = 0;
+	numCorrect = 0;
 	pageLoad();
 })
 
