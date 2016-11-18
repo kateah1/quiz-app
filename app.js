@@ -76,7 +76,7 @@ function generateQuestion() {
 	$("#questions-page h2").text(questions[currQuestion].title);
 	for(var i = 0; i < questions[currQuestion].options.length; i++) {
 		var optionInput = questions[currQuestion].options[i];
-		var inputRadio = "<input type='radio' value='" + optionInput + "'>";
+		var inputRadio = "<input type='radio' name='option' value='" + optionInput + "'>";
 		$('#questions-page form').append('<label>' + inputRadio + " " + optionInput + "</label>");
 	}
 }
